@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workforce Readiness for Oregon Homeless Response Systems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0;
+            background: white;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.95;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        
+        .location-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        
+        .logo-section {
+            text-align: center;
+            padding: 40px 30px;
+            background: #f8fafc;
+            border-bottom: 3px solid #2563eb;
+        }
+        
+        .hsc-logo-img {
+            max-width: 400px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .intro-section {
+            padding: 40px;
+            background: linear-gradient(to bottom, #f1f5f9, white);
+            text-align: center;
+        }
+        
+        .intro-section h2 {
+            color: #1e40af;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .intro-text {
+            font-size: 1.2em;
+            color: #475569;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .systems-section {
+            padding: 50px 40px;
+            background: white;
+            border-top: 3px solid #2563eb;
+        }
+        
+        .systems-title {
+            color: #1e40af;
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .systems-subtitle {
+            color: #64748b;
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .system-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .system-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+            border-color: #2563eb;
+        }
+        
+        .system-number {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.4em;
+            font-weight: bold;
+            line-height: 45px;
+            margin-bottom: 15px;
+        }
+        
+        .system-name {
+            font-size: 1.4em;
+            color: #1e40af;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .system-details {
+            color: #64748b;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 60px 40px;
+            background: white;
+        }
+        
+        .benefit-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #2563eb, #7c3aed);
+            transition: width 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+            border-color: #2563eb;
+        }
+        
+        .benefit-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+        
+        .benefit-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.8em;
+            font-weight: bold;
+            line-height: 60px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+        
+        .benefit-title {
+            font-size: 1.6em;
+            color: #1e40af;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .benefit-description {
+            color: #475569;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+        
+        .credibility-section {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .credibility-title {
+            font-size: 1.8em;
+            color: #1e40af;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .credibility-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .badge {
+            text-align: center;
+        }
+        
+        .badge-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .badge-text {
+            font-size: 1.3em;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        
+        .badge-subtext {
+            color: #64748b;
+            font-size: 0.95em;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 60px 40px 70px 40px;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .cta-description {
+            font-size: 1.3em;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            background: #2563eb;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background: white;
+            color: #2563eb;
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .cta-button.secondary:hover {
+            background: white;
+            color: #2563eb;
+        }
+        
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .footer-text {
+            font-size: 1.1em;
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .hsc-logo-img {
+                max-width: 300px;
+            }
+            
+            .systems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .systems-title {
+                font-size: 1.6em;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+            }
+            
+            .cta-title {
+                font-size: 1.8em;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="title">Workforce Readiness Training</div>
+                <div class="subtitle">Serving All 8 Oregon Homeless Response Systems</div>
+                <div class="location-tag">🌲 Partnering with Oregon's Network of Homeless Response Systems 🌲</div>
+            </div>
+        </div>
+        
+        <div class="logo-section">
+            <img src="https://cdn.membership.io/4505163/93c358d5534d14d3db7885a6482d0ded" class="hsc-logo-img" alt="HSC - Homeless Solutions Consultants Logo">
+        </div>
+        
+        <div class="intro-section">
+            <h2>Your Staff, Ready from Day One</h2>
+            <p class="intro-text">
+                Transform your homeless response system with proven workforce training that delivers immediate impact. 
+                Our comprehensive program ensures your team has the frontline experience, trauma-informed skills, 
+                and shared baseline they need to serve effectively—from their very first day.
+            </p>
+        </div>
+        
+        <div class="systems-section">
+            <h2 class="systems-title">The 8 Oregon Coordinated Homeless Response Systems</h2>
+            <p class="systems-subtitle">Established under Oregon House Bill 4123 (2022)</p>
+            <div class="systems-grid">
+                <div class="system-card">
+                    <div class="system-number">1</div>
+                    <div class="system-name">Benton County</div>
+                    <div class="system-details">Benton County, City of Corvallis</div>
+                </div>
+                <div class="system-card">
+                    <div class="system-number">2</div>
+                    <div class="system-name">Coos County</div>
+                    <div class="system-details">Coos County, City of Coos Bay, City of North Bend</div>
+                </div>
+                <div class="system-card">
+                    <div class="system-number">3</div>
+                    <div class="system-name">Deschutes County</div>
+                    <div class="system-details">Deschutes County, Bend, La Pine, Redmond, Sisters</div>
+                </div>
+                <div class="system-card">
+                    <div class="system-number">4</div>
+                    <div class="system-name">Lincoln County</div>
+                    <div class="system-details">Lincoln County, Lincoln City, Newport, Toledo</div>
+                </div>
+                <div class="system-card">
+                    <div class="system-number">5</div>
+                    <div class="system-name">Mid-Columbia</div>
+                    <div class="system-details">Hood River, Sherman, Wasco Counties, The Dalles</div>
+                </div>
+                <div class="system-card">
+                    <div class="system-number">6</div>
+                    <div class="system-name">Polk County</div>
+                    <div class="system-details">Polk County, Dallas, Independence, Monmouth, Grand Ronde</div>
+                </div>
+                <div class="system-card">
+                    <div class="system-number">7</div>
+                    <div class="system-name">Tillamook County</div>
+                    <div class="system-details">Tillamook County, Tillamook, Garibaldi, Rockaway Beach</div>
+                </div>
+                <div class="system-card">
+                    <div class="system-number">8</div>
+                    <div class="system-name">Umatilla County</div>
+                    <div class="system-details">Umatilla County, Umatilla, Hermiston, Stanfield, Echo</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-number">01</div>
+                <div class="benefit-title">Frontline Experience</div>
+                <div class="benefit-description">
+                    Instant access to real-life, de-escalation moments, trauma-informed responses, 
+                    and "lived experience" wisdom. Your staff gains years of knowledge in days.
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-number">02</div>
+                <div class="benefit-title">Shared Baseline</div>
+                <div class="benefit-description">
+                    Staff across agencies and locations start with the same core expectations and language. 
+                    Create consistency and collaboration from the ground up.
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-number">03</div>
+                <div class="benefit-title">Continuous Hiring</div>
+                <div class="benefit-description">
+                    Training meets staff when they're hired—not months later when or if a large enough 
+                    cohort finally forms. Fill positions faster, onboard smoother.
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-number">04</div>
+                <div class="benefit-title">Reduce Turnover</div>
+                <div class="benefit-description">
+                    Identify and support staff before burnout hits. Clear roles, boundaries, expectations, 
+                    and support help people stay and thrive in their positions.
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-number">05</div>
+                <div class="benefit-title">Trauma-Informed</div>
+                <div class="benefit-description">
+                    Calm, consistent responses reduce retraumatization. Protects trust in high-visibility 
+                    settings and creates safer environments for everyone.
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-number">06</div>
+                <div class="benefit-title">Preserve Knowledge</div>
+                <div class="benefit-description">
+                    What staff learn is captured and shared. Nothing walks out. Knowledge survives 
+                    turnover and transition, building institutional wisdom.
+                </div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-number">07</div>
+                <div class="benefit-title">Scalable Readiness</div>
+                <div class="benefit-description">
+                    A system that works for rural, distributed, and multi-partner response environments. 
+                    Train everyone, everywhere, consistently.
+                </div>
+            </div>
+        </div>
+        
+        <div class="credibility-section">
+            <h2 class="credibility-title">Built From Frontline Experience</h2>
+            <div class="credibility-badges">
+                <div class="badge">
+                    <div class="badge-icon">🏛️</div>
+                    <div class="badge-text">Field-Tested</div>
+                    <div class="badge-subtext">Developed on-site at Del Norte Mission Possible (Crescent City, CA)</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">👥</div>
+                    <div class="badge-text">Case Management & Peer Support</div>
+                    <div class="badge-subtext">40-Hour Skills Training Certification</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">✅</div>
+                    <div class="badge-text">Results-Driven</div>
+                    <div class="badge-subtext">Measurable improvements in staff retention & effectiveness</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <div class="cta-title">Ready to Transform Your Workforce?</div>
+            <div class="cta-description">
+                Let's discuss how HSC's workforce readiness training can strengthen your Oregon homeless response system. 
+                <br>Free 30-minute readiness conversation—no obligation, just insight.
+            </div>
+            <div class="cta-buttons">
+                <a href="https://calendly.com/philjohncock/30min" class="cta-button" target="_blank">
+                    📅 Schedule Free Convo with Phil Johncock (HSC)
+                </a>
+                </a>
+                <a href="https://HomelessSolutionsConsultants.com" class="cta-button secondary" target="_blank">
+                    🌐 Visit Our Website
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-text">
+                Homeless Solutions Consultants (HSC) = 40+ Years of Combined Experience
+            </div>
+        </div>
+    </div>
+</body>
+</html>
